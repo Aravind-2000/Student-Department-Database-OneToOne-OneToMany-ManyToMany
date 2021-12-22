@@ -29,4 +29,23 @@ public class StudentService
 		return studrepo.findById(id);
 	}
 
+	public String updateStudents(Long studentId , Students students )
+	{
+		Students stud = studrepo.getById(studentId);
+		if(students.getStudentName() != null){
+			stud.setStudentName(students.getStudentName());
+		}
+		if(students.getDepartmentId() != null)
+		{
+			stud.setDepartmentId(students.getDepartmentId());
+		}
+		studrepo.save(stud);
+		return "Student Details updated successfully";
+	}
+
+	public String deleteStudents(Long studentId)
+	{
+		studrepo.deleteById(studentId);
+		return "Student details deleted successfully";
+	}
 }

@@ -34,8 +34,10 @@ public class MainController
 	{
 		return studservice.getStudentById(id);
 	}
-	
-	
+	@PatchMapping("students/update/{id}")
+	public String updateStud(@PathVariable("id") Long studentId, @RequestBody Students students){return studservice.updateStudents(studentId,students);}
+	@DeleteMapping("students/delete/{id}")
+	public String deleteStud(@PathVariable("id") Long studentId){return studservice.deleteStudents(studentId);}
 	
 	
 	//Department Controller
