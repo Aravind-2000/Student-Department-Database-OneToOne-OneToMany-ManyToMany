@@ -1,6 +1,8 @@
 package com.example.demo.service;
 
 import java.util.*;
+
+import com.example.demo.repository.StudentsProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.entity.*;
@@ -12,6 +14,8 @@ public class StudentService
 {
 	@Autowired
 	private StudentRepository studrepo;
+	@Autowired
+	private StudentsProfileRepository studprofrepo;
 	
 	public List<Students> getStudents()
 	{
@@ -28,7 +32,6 @@ public class StudentService
 	{
 		return studrepo.findById(id);
 	}
-
 	public String updateStudents(Long studentId , Students students )
 	{
 		Students stud = studrepo.getById(studentId);
@@ -48,4 +51,19 @@ public class StudentService
 		studrepo.deleteById(studentId);
 		return "Student details deleted successfully";
 	}
+	//Student Profile
+	public String addStudentsProfile(Student_profile studprof)
+	{
+		studprofrepo.save(studprof);
+		return "Student Profile Updated";
+	}
+	public List<Student_profile>  getStudentProfile()
+	{
+		return studprofrepo.findAll();
+	}
+	public List<Student_profile> getStudProfByStudId(Long studentId)
+	{
+		return studprofrepo.getSTudProfByStudId(studentId);
+	}
+
 }

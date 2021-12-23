@@ -24,21 +24,39 @@ public class MainController
 	{
 		return studservice.getStudents();
 	}
-	@PostMapping("students/add")
-	public String addStud(@RequestBody Students students)
-	{
-		return studservice.addStudents(students);
-	}
 	@GetMapping("students/get/{id}")
 	public Optional<Students> getbyStudId(@PathVariable("id") Long id)
 	{
 		return studservice.getStudentById(id);
 	}
+	@PostMapping("students/add")
+	public String addStud(@RequestBody Students students)
+	{
+		return studservice.addStudents(students);
+	}
 	@PatchMapping("students/update/{id}")
 	public String updateStud(@PathVariable("id") Long studentId, @RequestBody Students students){return studservice.updateStudents(studentId,students);}
 	@DeleteMapping("students/delete/{id}")
 	public String deleteStud(@PathVariable("id") Long studentId){return studservice.deleteStudents(studentId);}
-	
+
+	//Student Profile Controller
+	@PostMapping("studentprofile/add")
+	public String addStudentProfile( @RequestBody Student_profile student_profile)
+	{
+		return studservice.addStudentsProfile(student_profile);
+	}
+
+	@GetMapping("studentprofile/getall")
+	public List<Student_profile> getStudProf()
+	{
+		return studservice.getStudentProfile();
+	}
+
+	@GetMapping("studentprofile/get/{id}")
+	public List<Student_profile> getSTudProfByStudId(@PathVariable("id") Long studentId)
+	{
+		return studservice.getStudProfByStudId(studentId);
+	}
 	
 	//Department Controller
 	@GetMapping("/departments/getall")
@@ -46,7 +64,6 @@ public class MainController
 	{
 		return deptservice.getDepartments();
 	}
-	
 	@PostMapping("departments/add")
 	public String addDept(@RequestBody Departments departments)
 	{

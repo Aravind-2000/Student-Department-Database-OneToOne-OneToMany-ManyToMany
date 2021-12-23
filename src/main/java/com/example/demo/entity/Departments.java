@@ -16,9 +16,7 @@ public class Departments
 	@OneToMany(mappedBy = "departmentId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Students> students = new ArrayList<>();
 	
-	
-	
-	
+
 	// Getters and Setters
 	public Long getDeptId() {
 		return deptId;
