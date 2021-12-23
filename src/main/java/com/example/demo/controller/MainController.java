@@ -53,7 +53,7 @@ public class MainController
 	}
 
 	@GetMapping("studentprofile/get/{id}")
-	public List<Student_profile> getStudProfByStudId(@PathVariable("id") Long studentId)
+	public Optional<Student_profile> getStudProfByStudId(@PathVariable("id") Long studentId)
 	{
 		return studservice.getStudProfByStudId(studentId);
 	}

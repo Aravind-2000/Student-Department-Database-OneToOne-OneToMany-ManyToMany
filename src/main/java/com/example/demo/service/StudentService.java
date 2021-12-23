@@ -61,9 +61,9 @@ public class StudentService
 	{
 		return studprofrepo.findAll();
 	}
-	public List<Student_profile> getStudProfByStudId(Long studentId)
+	public Optional<Student_profile> getStudProfByStudId(Long studentId)
 	{
-		return studprofrepo.getSTudProfByStudId(studentId);
+		return studprofrepo.findById(studentId);
 	}
 
 	public String updateSTudProf(Long id, Student_profile sp)
