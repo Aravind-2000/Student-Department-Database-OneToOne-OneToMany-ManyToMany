@@ -53,9 +53,21 @@ public class MainController
 	}
 
 	@GetMapping("studentprofile/get/{id}")
-	public List<Student_profile> getSTudProfByStudId(@PathVariable("id") Long studentId)
+	public List<Student_profile> getStudProfByStudId(@PathVariable("id") Long studentId)
 	{
 		return studservice.getStudProfByStudId(studentId);
+	}
+
+	@PatchMapping("studentprofile/update/{id}")
+	public String updateStudProf(@PathVariable("id") Long id, @RequestBody Student_profile student_profile)
+	{
+		return studservice.updateSTudProf(id, student_profile);
+	}
+
+	@DeleteMapping("studentprofile/delete/{id}")
+	public String deleteStudProfByID(@PathVariable("id") Long id)
+	{
+		return studservice.deleteStudProfById(id);
 	}
 	
 	//Department Controller

@@ -55,7 +55,7 @@ public class StudentService
 	public String addStudentsProfile(Student_profile studprof)
 	{
 		studprofrepo.save(studprof);
-		return "Student Profile Updated";
+		return "Student Profile Added Succesfully";
 	}
 	public List<Student_profile>  getStudentProfile()
 	{
@@ -66,4 +66,48 @@ public class StudentService
 		return studprofrepo.getSTudProfByStudId(studentId);
 	}
 
+	public String updateSTudProf(Long id, Student_profile sp)
+	{
+		Student_profile studprof = studprofrepo.getById(id);
+		if(sp.getAddressLine1() != null)
+		{
+			studprof.setAddressLine1(sp.getAddressLine1());
+		}
+		if(sp.getAddressLine2() != null)
+		{
+			studprof.setAddressLine2(sp.getAddressLine2());
+		}
+		if(sp.getCity() != null)
+		{
+			studprof.setCity(sp.getCity());
+		}
+		if(sp.getGender() != null)
+		{
+			studprof.setGender(sp.getGender());
+		}
+		if(sp.getCountry() != null)
+		{
+			studprof.setCountry(sp.getCountry());
+		}
+		if(sp.getState() != null)
+		{
+			studprof.setState(sp.getState());
+		}
+		if(sp.getPincode() != null)
+		{
+			studprof.setPincode(sp.getPincode());
+		}
+		if(sp.getPhoneNumber() != null)
+		{
+			studprof.setPhoneNumber(sp.getPhoneNumber());
+		}
+		studprofrepo.save(studprof);
+		return "Student Profile Updated Successfully";
+	}
+
+	public String deleteStudProfById(Long id)
+	{
+		 studprofrepo.deleteById(id);
+		 return "Student Profile deleted Successfully";
+	}
 }
