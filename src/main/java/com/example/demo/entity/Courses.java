@@ -14,8 +14,8 @@ public class Courses
     private int courseFee;
     private int months;
 
-//    @ManyToMany(mappedBy = "courses")
-//    List<Students> students = new ArrayList<>();
+    @ManyToMany(mappedBy = "courses", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    List<Students> enrolledStudents = new ArrayList<>();
 
 
 
@@ -49,5 +49,13 @@ public class Courses
 
     public void setMonths(int months) {
         this.months = months;
+    }
+
+    public List<Students> getEnrolledStudents() {
+        return enrolledStudents;
+    }
+
+    public void setEnrolledStudents(List<Students> enrolledStudents) {
+        this.enrolledStudents = enrolledStudents;
     }
 }

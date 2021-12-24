@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 import java.util.*;
+
+import com.example.demo.repository.CoursesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +18,9 @@ public class MainController
 	
 	@Autowired
 	private DepartmentService deptservice;
+
+	@Autowired
+	private CourseService courseService;
 	
 	
 	//Student Controller
@@ -87,4 +92,17 @@ public class MainController
 		return deptservice.getDepartmentById(id);
 	}
 
+
+	//Courses
+	@GetMapping("courses/getall")
+	public List<Courses> getCourse()
+	{
+		return courseService.getCourses();
+	}
+
+	@PostMapping("courses/add")
+	public String addCourse(@RequestBody Courses course)
+	{
+		return courseService.addCourse(course);
+	}
 }

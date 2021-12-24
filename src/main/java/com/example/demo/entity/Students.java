@@ -1,8 +1,7 @@
 package com.example.demo.entity;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Students 
@@ -15,11 +14,11 @@ public class Students
 	private Long departmentId;
 
 
-//    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-//    @JoinTable(name = "Students_Courses", joinColumns = {
-//			@JoinColumn(name = "Student_ID", referencedColumnName = "studentId", nullable = false, updatable = false)},
-//			inverseJoinColumns = {@JoinColumn(name = "Course_ID", referencedColumnName = "courseId",  nullable = false, updatable = false)})
-//	Set<Courses> courses = new HashSet<>();
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "Students_Courses", joinColumns = {
+			@JoinColumn(name = "Student_ID")},
+			inverseJoinColumns = {@JoinColumn(name = "Course_ID")})
+	Set<Courses> courses = new HashSet<>();
 
 	//Getters and Setters
 	public Long getStudentId() {
