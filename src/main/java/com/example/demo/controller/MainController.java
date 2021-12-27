@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.service.*;
 import com.example.demo.entity.*;
 
+
+@CrossOrigin(origins = { "http://localhost:3000" })
 @RestController
 public class MainController 
 {

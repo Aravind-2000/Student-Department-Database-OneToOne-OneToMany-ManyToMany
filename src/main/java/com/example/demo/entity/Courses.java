@@ -2,7 +2,6 @@ package com.example.demo.entity;
 
 
 import javax.persistence.*;
-import java.time.Month;
 import java.util.*;
 
 @Entity
@@ -14,8 +13,9 @@ public class Courses
     private int courseFee;
     private int months;
 
-    @ManyToMany(mappedBy = "courses", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    List<Students> enrolledStudents = new ArrayList<>();
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable
+    private Set<Students> enrolledStudents;
 
 
 
@@ -51,11 +51,11 @@ public class Courses
         this.months = months;
     }
 
-    public List<Students> getEnrolledStudents() {
+    public Set<Students> getEnrolledStudents() {
         return enrolledStudents;
     }
 
-    public void setEnrolledStudents(List<Students> enrolledStudents) {
+    public void setEnrolledStudents(Set<Students> enrolledStudents) {
         this.enrolledStudents = enrolledStudents;
     }
 }

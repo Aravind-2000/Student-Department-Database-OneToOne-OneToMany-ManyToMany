@@ -14,11 +14,8 @@ public class Students
 	private Long departmentId;
 
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "Students_Courses", joinColumns = {
-			@JoinColumn(name = "Student_ID")},
-			inverseJoinColumns = {@JoinColumn(name = "Course_ID")})
-	Set<Courses> courses = new HashSet<>();
+    @ManyToMany(mappedBy = "enrolledStudents")
+	private Set<Courses> courses ;
 
 	//Getters and Setters
 	public Long getStudentId() {
@@ -44,6 +41,5 @@ public class Students
 	public void setDepartmentId(Long departmentId) {
 		this.departmentId = departmentId;
 	}
-
 
 }
