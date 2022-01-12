@@ -49,9 +49,6 @@ public class StudentService
 		{
 			stud.setDepartmentId(students.getDepartmentId());
 		}
-//		if(students.getCourses() != null) {
-//			stud.setCourseId(students.getCourses());
-//		}
 		studrepo.save(stud);
 		return "Student Details updated successfully";
 	}
