@@ -16,12 +16,10 @@ public class Students
 	private String studentName;
 
 	private Long departmentId;
-	
-	
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="students")
-	private List<Courses> enrolledCourses;
-	
 
+	@ManyToMany(mappedBy = "enrolledStudents")
+	@JsonIgnore
+	private Set<Courses> courses = new HashSet<>();
 
 //	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //	@JoinTable(name = "students_courses",
@@ -32,6 +30,7 @@ public class Students
 //					@JoinColumn(name = "course_id", referencedColumnName = "courseId",
 //							nullable = false)})
 //	private List<Courses> courses = new ArrayList<>();
+
 
 	//Getters and Setters
 	public Long getStudentId() {
@@ -58,11 +57,12 @@ public class Students
 		this.departmentId = departmentId;
 	}
 
-//	public List<Courses> getEnrolledCourses() {
-//		return enrolledCourses;
-//	}
-//
-//	public void setEnrolledCourses(List<Courses> enrolledCourses) {
-//		this.enrolledCourses = enrolledCourses;
-//	}
+	public Set<Courses> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(Set<Courses> courses) {
+		this.courses = courses;
+	}
+
 }

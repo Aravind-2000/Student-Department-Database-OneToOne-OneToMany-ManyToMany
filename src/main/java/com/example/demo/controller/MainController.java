@@ -115,4 +115,15 @@ public class MainController
 	{
 		return courseService.addCourse(course);
 	}
+
+	@PutMapping("/{courseId}/students/{studentId}")
+	public String addStudToCourse(@PathVariable("courseId") Long courseId, @PathVariable("studentId") Long studentId)
+	{
+		return courseService.addStudentToCourse(courseId, studentId);
+	}
+
+	@DeleteMapping("{courseId}/students/{studentId}")
+	String deletestudentfromcourse(@PathVariable Long courseId, @PathVariable Long studentId){
+		return courseService.deleteStudentFromCourse(courseId, studentId);
+	}
 }

@@ -16,15 +16,16 @@ public class Courses implements Serializable
     private String courseName;
     private int courseFee;
     private int months;
-    
 
     @ManyToMany
-    private List<Students> students;
-
-
+    @JoinTable(
+            name = "Enrolled_Students",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id")
+    )
+    private Set<Students> enrolledStudents = new HashSet<>();
 
     //Getters and Setters
-
     public Long getCourseId() {
         return courseId;
     }
@@ -57,12 +58,18 @@ public class Courses implements Serializable
         this.months = months;
     }
 
-
-    public List<Students> getStudents() {
-        return students;
+    public Set<Students> getEnrolledStudents() {
+        return enrolledStudents;
     }
 
-    public void setStudents(List<Students> students) {
-        this.students = students;
+    public void setEnrolledStudents(Set<Students> enrolledStudents) {
+        this.enrolledStudents = enrolledStudents;
+    }
+
+    public void enrollStudent(Students students){
+        enrolledStudents.add(students);
+    }
+    public void deleteStudent(Students students){
+        enrolledStudents.remove(students);
     }
 }
