@@ -21,17 +21,6 @@ public class Students
 	@JsonIgnore
 	private Set<Courses> courses = new HashSet<>();
 
-//	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//	@JoinTable(name = "students_courses",
-//			joinColumns = {
-//					@JoinColumn(name = "student_id", referencedColumnName = "studentId",
-//							nullable = false)},
-//			inverseJoinColumns = {
-//					@JoinColumn(name = "course_id", referencedColumnName = "courseId",
-//							nullable = false)})
-//	private List<Courses> courses = new ArrayList<>();
-
-
 	//Getters and Setters
 	public Long getStudentId() {
 		return studentId;
