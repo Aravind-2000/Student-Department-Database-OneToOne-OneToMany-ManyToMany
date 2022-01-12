@@ -1,29 +1,35 @@
 package com.example.demo.entity;
 
 
+import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.*;
 
 @Entity
-public class Courses
+public class Courses implements Serializable
 {
     @Id
-    private int courseId;
+    private Long courseId;
+
     private String courseName;
     private int courseFee;
     private int months;
+    
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable
-    private Set<Students> enrolledStudents;
+    @ManyToMany
+    private List<Students> students;
 
 
 
-    public int getCourseId() {
+    //Getters and Setters
+
+    public Long getCourseId() {
         return courseId;
     }
 
-    public void setCourseId(int courseId) {
+    public void setCourseId(Long courseId) {
         this.courseId = courseId;
     }
 
@@ -51,11 +57,12 @@ public class Courses
         this.months = months;
     }
 
-    public Set<Students> getEnrolledStudents() {
-        return enrolledStudents;
+
+    public List<Students> getStudents() {
+        return students;
     }
 
-    public void setEnrolledStudents(Set<Students> enrolledStudents) {
-        this.enrolledStudents = enrolledStudents;
+    public void setStudents(List<Students> students) {
+        this.students = students;
     }
 }

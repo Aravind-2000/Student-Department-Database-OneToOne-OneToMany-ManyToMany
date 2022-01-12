@@ -6,14 +6,16 @@ import javax.persistence.*;
 @Entity
 public class Student_profile
 {
-    @OneToOne
-    @PrimaryKeyJoinColumn
-    @JoinColumn(name = "student_id", referencedColumnName = "studentId", nullable = false)
-    private Students students;
 
-    @Id
-    private Long id;
+	 @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	 @PrimaryKeyJoinColumn
+	 @JoinColumn(name = "student_Id", referencedColumnName = "studentId", nullable = false)
+	 private Students students;
 
+
+	@Id
+	private long id;
+	 
     private String phoneNumber;
 
     @Enumerated(EnumType.STRING)
@@ -30,19 +32,29 @@ public class Student_profile
 
 
 
-    public Long getId() {
-        return id;
-    }
+    //Getter and Setters
+    
+    public Students getStudents() {
+		return students;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public void setStudents(Students students) {
+		this.students = students;
+	}
 
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -101,13 +113,4 @@ public class Student_profile
     public void setCountry(String country) {
         this.country = country;
     }
-    public Students getStudents() {
-        return students;
-    }
-
-    public void setStudents(Students students) {
-        this.students = students;
-    }
-
-
 }

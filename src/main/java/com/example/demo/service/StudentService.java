@@ -28,13 +28,20 @@ public class StudentService
 		return "Student added";
 	}
 	
-	public Optional<Students> getStudentById(Long id)
+	public Optional<Students> getStudentById(Long studentId)
 	{
-		return studrepo.findById(id);
+		return studrepo.getByStudentId(studentId);
 	}
+	
+	
 	public String updateStudents(Long studentId , Students students )
 	{
-		Students stud = studrepo.getById(studentId);
+		Students stud = studrepo.findByStudentId(studentId);
+		
+		if(students.getStudentId() != null)
+		{
+			stud.setStudentId(students.getStudentId());
+		}
 		if(students.getStudentName() != null){
 			stud.setStudentName(students.getStudentName());
 		}
@@ -42,13 +49,16 @@ public class StudentService
 		{
 			stud.setDepartmentId(students.getDepartmentId());
 		}
+//		if(students.getCourses() != null) {
+//			stud.setCourseId(students.getCourses());
+//		}
 		studrepo.save(stud);
 		return "Student Details updated successfully";
 	}
 
 	public String deleteStudents(Long studentId)
 	{
-		studrepo.deleteById(studentId);
+		studrepo.deleteByStudentId(studentId);
 		return "Student details deleted successfully";
 	}
 	//Student Profile

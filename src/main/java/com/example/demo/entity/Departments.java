@@ -1,15 +1,16 @@
 package com.example.demo.entity;
 
+
+
+import java.io.Serializable;
 import java.util.*;
 import javax.persistence.*;
 
 @Entity
-public class Departments 
+public class Departments implements Serializable
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long deptId;
-	
 	private String deptName;
 
 	
@@ -41,7 +42,5 @@ public class Departments
 	public void setStudents(List<Students> students) {
 		this.students = students;
 	}
-	
-	
 
 }

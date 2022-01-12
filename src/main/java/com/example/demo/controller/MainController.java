@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import java.util.*;
 
-import com.example.demo.repository.CoursesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,17 +31,26 @@ public class MainController
 		return studservice.getStudents();
 	}
 	@GetMapping("students/get/{id}")
-	public Optional<Students> getbyStudId(@PathVariable("id") Long id)
+	public Optional<Students> getbyStudId(@PathVariable("id") Long studentId)
 	{
-		return studservice.getStudentById(id);
+		return studservice.getStudentById(studentId);
 	}
-	@PostMapping("students/add")
+	@PostMapping(path = "students/add")
 	public String addStud(@RequestBody Students students)
 	{
 		return studservice.addStudents(students);
 	}
+	
+
+	
+	
 	@PatchMapping("students/update/{id}")
-	public String updateStud(@PathVariable("id") Long studentId, @RequestBody Students students){return studservice.updateStudents(studentId,students);}
+	public String updateStud(@PathVariable("id") Long studentId, @RequestBody Students students)
+	{
+		return studservice.updateStudents(studentId,students);
+	}
+	
+	
 	@DeleteMapping("students/delete/{id}")
 	public String deleteStud(@PathVariable("id") Long studentId){return studservice.deleteStudents(studentId);}
 
@@ -72,9 +80,9 @@ public class MainController
 	}
 
 	@DeleteMapping("studentprofile/delete/{id}")
-	public String deleteStudProfByID(@PathVariable("id") Long id)
+	public String deleteStudProfByID(@PathVariable("id") Long studentId)
 	{
-		return studservice.deleteStudProfById(id);
+		return studservice.deleteStudProfById(studentId);
 	}
 	
 	//Department Controller
