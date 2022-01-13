@@ -1,7 +1,7 @@
 package com.example.demo.entity;
 
 
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -23,7 +23,7 @@ public class Courses implements Serializable
             joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "course_id")
     )
-    private Set<Students> enrolledStudents = new HashSet<>();
+    private List<Students> enrolledStudents = new ArrayList<>();
 
     //Getters and Setters
     public Long getCourseId() {
@@ -58,16 +58,18 @@ public class Courses implements Serializable
         this.months = months;
     }
 
-    public Set<Students> getEnrolledStudents() {
+    public List<Students> getEnrolledStudents() {
         return enrolledStudents;
     }
 
-    public void setEnrolledStudents(Set<Students> enrolledStudents) {
+    public void setEnrolledStudents(List<Students> enrolledStudents) {
         this.enrolledStudents = enrolledStudents;
     }
 
     public void enrollStudent(Students students){
         enrolledStudents.add(students);
+        
+        
     }
     public void deleteStudent(Students students){
         enrolledStudents.remove(students);

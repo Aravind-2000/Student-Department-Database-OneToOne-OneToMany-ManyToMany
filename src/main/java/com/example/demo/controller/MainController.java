@@ -116,6 +116,11 @@ public class MainController
 		return courseService.addCourse(course);
 	}
 
+	@GetMapping("courses/get/{id}")
+	public Optional<Courses> getCourseById(@PathVariable("id") Long courseId){
+		return courseService.getCourseById(courseId);
+	}
+	
 	@PutMapping("/{courseId}/students/{studentId}")
 	public String addStudToCourse(@PathVariable("courseId") Long courseId, @PathVariable("studentId") Long studentId)
 	{

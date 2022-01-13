@@ -17,9 +17,11 @@ public class Students
 
 	private Long departmentId;
 
+
+
 	@ManyToMany(mappedBy = "enrolledStudents")
 	@JsonIgnore
-	private Set<Courses> courses = new HashSet<>();
+	private List<Courses> courses = new ArrayList<>();
 
 	//Getters and Setters
 	public Long getStudentId() {
@@ -46,11 +48,11 @@ public class Students
 		this.departmentId = departmentId;
 	}
 
-	public Set<Courses> getCourses() {
+	public List<Courses> getCourses() {
 		return courses;
 	}
 
-	public void setCourses(Set<Courses> courses) {
+	public void setCourses(List<Courses> courses) {
 		this.courses = courses;
 	}
 

@@ -7,10 +7,10 @@ import com.example.demo.repository.CoursesRepository;
 import com.example.demo.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.persistence.Access;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CourseService
@@ -31,6 +31,11 @@ public class CourseService
         courserepo.save(courses);
         return "Course Added";
     }
+    
+    public Optional<Courses> getCourseById(Long courseId){
+    	return courserepo.findById(courseId);
+    }
+    
     public String addStudentToCourse(Long courseId, Long studentId) {
         Courses course = courserepo.getById(courseId);
         Students student = studrepo.getById(studentId);
