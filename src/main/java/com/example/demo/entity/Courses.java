@@ -1,8 +1,5 @@
 package com.example.demo.entity;
 
-
-
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
@@ -23,7 +20,7 @@ public class Courses implements Serializable
             joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "course_id")
     )
-    private List<Students> enrolledStudents = new ArrayList<>();
+    public List<Students> enrolledStudents = new ArrayList<>();
 
     //Getters and Setters
     public Long getCourseId() {
@@ -68,8 +65,6 @@ public class Courses implements Serializable
 
     public void enrollStudent(Students students){
         enrolledStudents.add(students);
-        
-        
     }
     public void deleteStudent(Students students){
         enrolledStudents.remove(students);

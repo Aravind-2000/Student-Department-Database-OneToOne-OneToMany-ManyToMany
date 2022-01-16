@@ -39,8 +39,10 @@ public class CourseService
     public String addStudentToCourse(Long courseId, Long studentId) {
         Courses course = courserepo.getById(courseId);
         Students student = studrepo.getById(studentId);
-        course.enrollStudent(student);
-        courserepo.save(course);
+        if(student != course.enrolledStudents) {
+            course.enrollStudent(student);
+            courserepo.save(course);
+        }
         return "Student Added to the course";
     }
     public String deleteStudentFromCourse(Long courseId, Long studentId){

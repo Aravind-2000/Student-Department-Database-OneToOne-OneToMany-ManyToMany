@@ -14,6 +14,7 @@ public class StudentService
 {
 	@Autowired
 	private StudentRepository studrepo;
+
 	@Autowired
 	private StudentsProfileRepository studprofrepo;
 	

@@ -121,13 +121,13 @@ public class MainController
 		return courseService.getCourseById(courseId);
 	}
 	
-	@PutMapping("/{courseId}/students/{studentId}")
+	@PutMapping("/students/{courseId}/{studentId}")
 	public String addStudToCourse(@PathVariable("courseId") Long courseId, @PathVariable("studentId") Long studentId)
 	{
 		return courseService.addStudentToCourse(courseId, studentId);
 	}
 
-	@DeleteMapping("{courseId}/students/{studentId}")
+	@DeleteMapping("/students/{courseId}/{studentId}")
 	String deletestudentfromcourse(@PathVariable Long courseId, @PathVariable Long studentId){
 		return courseService.deleteStudentFromCourse(courseId, studentId);
 	}

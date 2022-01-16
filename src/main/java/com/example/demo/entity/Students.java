@@ -17,8 +17,6 @@ public class Students
 
 	private Long departmentId;
 
-
-
 	@ManyToMany(mappedBy = "enrolledStudents")
 	@JsonIgnore
 	private List<Courses> courses = new ArrayList<>();
