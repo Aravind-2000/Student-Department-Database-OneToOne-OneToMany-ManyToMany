@@ -36,16 +36,15 @@ public class CourseService
     	return courserepo.findById(courseId);
     }
     
-    public String addStudentToCourse(Long courseId, Long studentId) {
+    public void addStudentToCourse(Long studentId, Long courseId) {
         Courses course = courserepo.getById(courseId);
         Students student = studrepo.getById(studentId);
         if(student != course.enrolledStudents) {
             course.enrollStudent(student);
             courserepo.save(course);
         }
-        return "Student Added to the course";
     }
-    public String deleteStudentFromCourse(Long courseId, Long studentId){
+    public String deleteStudentFromCourse(Long studentId, Long courseId){
         Courses course = courserepo.getById(courseId);
         Students student = studrepo.getById(studentId);
         course.deleteStudent(student);

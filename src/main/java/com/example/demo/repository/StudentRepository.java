@@ -15,6 +15,4 @@ public interface StudentRepository extends JpaRepository<Students, Long>
     
     Students findByStudentId(Long studentId);
 
-    @Transactional
-    void  deleteByStudentId(Long studentid);
 }

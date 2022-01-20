@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import java.util.*;
 
+import com.example.demo.repository.CoursesRepository;
 import com.example.demo.repository.StudentsProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,9 @@ public class StudentService
 {
 	@Autowired
 	private StudentRepository studrepo;
+
+	@Autowired
+	private CoursesRepository courserepo;
 
 	@Autowired
 	private StudentsProfileRepository studprofrepo;
@@ -56,7 +60,7 @@ public class StudentService
 
 	public String deleteStudents(Long studentId)
 	{
-		studrepo.deleteByStudentId(studentId);
+		studrepo.deleteById(studentId);
 		return "Student details deleted successfully";
 	}
 	//Student Profile

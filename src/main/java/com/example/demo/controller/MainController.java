@@ -35,25 +35,20 @@ public class MainController
 	{
 		return studservice.getStudentById(studentId);
 	}
-	@PostMapping(path = "students/add")
+	@PostMapping(path = "students/add/")
 	public String addStud(@RequestBody Students students)
 	{
 		return studservice.addStudents(students);
 	}
-	
 
-	
-	
 	@PatchMapping("students/update/{id}")
 	public String updateStud(@PathVariable("id") Long studentId, @RequestBody Students students)
 	{
 		return studservice.updateStudents(studentId,students);
 	}
-	
-	
+
 	@DeleteMapping("students/delete/{id}")
 	public String deleteStud(@PathVariable("id") Long studentId){return studservice.deleteStudents(studentId);}
-
 	//Student Profile Controller
 	@PostMapping("studentprofile/add")
 	public String addStudentProfile( @RequestBody Student_profile student_profile)
@@ -120,15 +115,17 @@ public class MainController
 	public Optional<Courses> getCourseById(@PathVariable("id") Long courseId){
 		return courseService.getCourseById(courseId);
 	}
-	
-	@PutMapping("/students/{courseId}/{studentId}")
-	public String addStudToCourse(@PathVariable("courseId") Long courseId, @PathVariable("studentId") Long studentId)
-	{
-		return courseService.addStudentToCourse(courseId, studentId);
+	@PutMapping("/students/{studentId}/{courseIdArr}")
+	public String enrollcoursetostudent(@PathVariable Long studentId, @PathVariable ArrayList<Long> courseIdArr){
+		for(int i = 0 ; i<courseIdArr.size(); i++){
+			 courseService.addStudentToCourse(studentId, courseIdArr.get(i));
+		}
+		return "Student added to course";
 	}
 
-	@DeleteMapping("/students/{courseId}/{studentId}")
-	String deletestudentfromcourse(@PathVariable Long courseId, @PathVariable Long studentId){
-		return courseService.deleteStudentFromCourse(courseId, studentId);
+	@DeleteMapping("/students/{studentId}/{courseId}")
+	public String deletecoursefromstudent(@PathVariable Long studentId, @PathVariable Long courseId){
+		return courseService.deleteStudentFromCourse(studentId, courseId);
 	}
+
 }
