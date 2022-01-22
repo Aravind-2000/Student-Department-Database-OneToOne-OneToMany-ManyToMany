@@ -18,6 +18,7 @@ public class Courses implements Serializable
     private int months;
 
     @ManyToMany
+    @JsonIgnore
     @JoinTable(
             name = "Enrolled_Students",
             joinColumns = @JoinColumn(name = "student_id"),
