@@ -35,7 +35,7 @@ public class MainController
 	{
 		return studservice.getStudentById(studentId);
 	}
-	@PostMapping(path = "students/add/")
+	@PostMapping(path = "students/add")
 	public String addStud(@RequestBody Students students)
 	{
 		return studservice.addStudents(students);
