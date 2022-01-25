@@ -70,11 +70,11 @@ public class CourseService
                     return "Course Added to student";
                 }
                 else{
-                    return errorService.dataAlreadyPresent();
+                    return errorService.errorFound(401);
                 }
             }
         }
-        return errorService.dataNotFound();
+        return errorService.errorFound(410);
     }
 
     public String deleteStudentFromCourse(Long studentId, Long courseId){
