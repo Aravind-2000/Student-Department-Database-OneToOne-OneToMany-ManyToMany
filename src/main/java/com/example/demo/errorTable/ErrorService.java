@@ -12,5 +12,4 @@ public class ErrorService {
     public String errorFound(Integer i){
         return errorRepo.getById(i).getErrorDescription();
     }
-
 }

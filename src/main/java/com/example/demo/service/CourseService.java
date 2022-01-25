@@ -40,13 +40,13 @@ public class CourseService
     }
 
     private CourseDTO mapEntityToDto(Courses course) {
-        CourseDTO responseDto = new CourseDTO();
-        responseDto.setCourseName(course.getCourseName());
-        responseDto.setCourseId(course.getCourseId());
-        responseDto.setCourseFee(course.getCourseFee());
-        responseDto.setMonths(course.getMonths());
-        responseDto.setEnrolledStudents(course.getEnrolledStudents().stream().map(Students::getStudentName).collect(Collectors.toList()));
-        return responseDto;
+        CourseDTO response = new CourseDTO();
+        response.setCourseName(course.getCourseName());
+        response.setCourseId(course.getCourseId());
+        response.setCourseFee(course.getCourseFee());
+        response.setMonths(course.getMonths());
+        response.setEnrolledStudents(course.getEnrolledStudents().stream().map(Students::getStudentName).collect(Collectors.toList()));
+        return response;
     }
 
     public String addCourse( Courses courses)
