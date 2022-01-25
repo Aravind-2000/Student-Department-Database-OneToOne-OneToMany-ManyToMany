@@ -1,6 +1,8 @@
 package com.example.demo.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 
 @Entity
@@ -12,7 +14,9 @@ public class BankAccount {
     private String ifscNumber;
     private String bankName;
     private String bankBranch;
-    private String accountType;
+
+    @Enumerated(EnumType.STRING)
+    private AccountType accountType;
 
     public Long getBankId() {
         return bankId;
@@ -46,11 +50,11 @@ public class BankAccount {
         this.bankBranch = bankBranch;
     }
 
-    public String getAccountType() {
+    public AccountType getAccountType() {
         return accountType;
     }
 
-    public void setAccountType(String accountType) {
+    public void setAccountType(AccountType accountType) {
         this.accountType = accountType;
     }
 
