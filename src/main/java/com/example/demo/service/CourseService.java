@@ -60,8 +60,8 @@ public class CourseService
     }
     
     public String addStudentToCourse(Long studentId, Long courseId) {
-        if(!courserepo.findById(courseId).isEmpty()){
-            if(!studrepo.findById(studentId).isEmpty()){
+        if(courserepo.findById(courseId).isPresent()){
+            if(studrepo.findById(studentId).isPresent()){
                 Courses course = courserepo.getById(courseId);
                 Students student = studrepo.getById(studentId);
                 if(!course.enrolledStudents.contains(student)) {
