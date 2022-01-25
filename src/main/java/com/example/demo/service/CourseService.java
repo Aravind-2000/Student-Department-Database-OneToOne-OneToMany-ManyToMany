@@ -32,7 +32,7 @@ public class CourseService
     {
         List<CourseDTO> courseDtos = new ArrayList<>();
         List<Courses> courses = courserepo.findAll();
-        courses.stream().forEach(course -> {
+        courses.forEach(course -> {
             CourseDTO courseDto = mapEntityToDto(course);
             courseDtos.add(courseDto);
         });
