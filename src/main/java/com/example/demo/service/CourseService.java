@@ -77,10 +77,11 @@ public class CourseService
         return errorService.dataNotFound();
     }
 
-    public void deleteStudentFromCourse(Long studentId, Long courseId){
+    public String deleteStudentFromCourse(Long studentId, Long courseId){
         Courses course = courserepo.getById(courseId);
         Students student = studrepo.getById(studentId);
         course.deleteStudent(student);
         courserepo.save(course);
+        return "Course removed";
     }
 }

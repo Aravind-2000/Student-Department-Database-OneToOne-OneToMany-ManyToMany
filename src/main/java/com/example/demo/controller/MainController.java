@@ -126,8 +126,7 @@ public class MainController
 
 	@DeleteMapping("/students/{studentId}/{courseId}")
 	public String deletecoursefromstudent(@PathVariable Long studentId, @PathVariable Long courseId){
-		 courseService.deleteStudentFromCourse(studentId, courseId);
-		 return "Course removed";
+		 return courseService.deleteStudentFromCourse(studentId, courseId);
 	}
 
 
