@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.*;
 
+import com.example.demo.DTO.CourseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +23,9 @@ public class MainController
 
 	@Autowired
 	private CourseService courseService;
+
+	@Autowired
+	private BankService bankService;
 	
 	
 	//Student Controller
@@ -100,7 +104,7 @@ public class MainController
 
 	//Courses
 	@GetMapping("courses/getall")
-	public List<Courses> getCourse()
+	public List<CourseDTO> getCourse()
 	{
 		return courseService.getCourses();
 	}
@@ -116,16 +120,30 @@ public class MainController
 		return courseService.getCourseById(courseId);
 	}
 	@PutMapping("/students/{studentId}/{courseIdArr}")
-	public String enrollcoursetostudent(@PathVariable Long studentId, @PathVariable ArrayList<Long> courseIdArr){
-		for(int i = 0 ; i<courseIdArr.size(); i++){
-			 courseService.addStudentToCourse(studentId, courseIdArr.get(i));
-		}
-		return "Student added to course";
+	public String enrollcoursetostudent(@PathVariable Long studentId, @PathVariable Long courseIdArr){
+		return courseService.addStudentToCourse(studentId, courseIdArr);
 	}
 
 	@DeleteMapping("/students/{studentId}/{courseId}")
 	public String deletecoursefromstudent(@PathVariable Long studentId, @PathVariable Long courseId){
-		return courseService.deleteStudentFromCourse(studentId, courseId);
+		 courseService.deleteStudentFromCourse(studentId, courseId);
+		 return "Course removed";
 	}
 
+
+	//Bank Controller ##########
+	@GetMapping("bankaccount/getall")
+	public List<BankAccount> getAllAccounts(){
+		return bankService.getAllAccounts();
+	}
+
+	@PostMapping("bankaccount/add")
+	public String addAccount(@RequestBody BankAccount account){
+		return bankService.addAccount(account);
+	}
+
+	@GetMapping("bankaccount/getall/{bankId}")
+	public Optional<BankAccount> getAccountById(@PathVariable Long bankId){
+		return bankService.getAccountById(bankId);
+	}
 }

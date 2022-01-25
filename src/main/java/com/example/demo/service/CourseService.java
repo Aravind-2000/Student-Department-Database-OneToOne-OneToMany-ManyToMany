@@ -1,16 +1,20 @@
 package com.example.demo.service;
 
 
+import com.example.demo.DTO.CourseDTO;
 import com.example.demo.entity.Courses;
 import com.example.demo.entity.Students;
+import com.example.demo.errorTable.ErrorService;
 import com.example.demo.repository.CoursesRepository;
 import com.example.demo.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.Access;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CourseService
@@ -21,9 +25,28 @@ public class CourseService
     @Autowired
     private StudentRepository studrepo;
 
-    public List<Courses> getCourses()
+    @Autowired
+    private ErrorService errorService;
+
+    public List<CourseDTO> getCourses()
     {
-        return courserepo.findAll();
+        List<CourseDTO> courseDtos = new ArrayList<>();
+        List<Courses> courses = courserepo.findAll();
+        courses.stream().forEach(course -> {
+            CourseDTO courseDto = mapEntityToDto(course);
+            courseDtos.add(courseDto);
+        });
+        return courseDtos;
+    }
+
+    private CourseDTO mapEntityToDto(Courses course) {
+        CourseDTO responseDto = new CourseDTO();
+        responseDto.setCourseName(course.getCourseName());
+        responseDto.setCourseId(course.getCourseId());
+        responseDto.setCourseFee(course.getCourseFee());
+        responseDto.setMonths(course.getMonths());
+        responseDto.setEnrolledStudents(course.getEnrolledStudents().stream().map(Students::getStudentName).collect(Collectors.toList()));
+        return responseDto;
     }
 
     public String addCourse( Courses courses)
@@ -36,19 +59,28 @@ public class CourseService
     	return courserepo.findById(courseId);
     }
     
-    public void addStudentToCourse(Long studentId, Long courseId) {
-        Courses course = courserepo.getById(courseId);
-        Students student = studrepo.getById(studentId);
-        if(student != course.enrolledStudents) {
-            course.enrollStudent(student);
-            courserepo.save(course);
+    public String addStudentToCourse(Long studentId, Long courseId) {
+        if(!courserepo.findById(courseId).isEmpty()){
+            if(!studrepo.findById(studentId).isEmpty()){
+                Courses course = courserepo.getById(courseId);
+                Students student = studrepo.getById(studentId);
+                if(!course.enrolledStudents.contains(student)) {
+                    course.enrollStudent(student);
+                    courserepo.save(course);
+                    return "Course Added to student";
+                }
+                else{
+                    return errorService.dataAlreadyPresent();
+                }
+            }
         }
+        return errorService.dataNotFound();
     }
-    public String deleteStudentFromCourse(Long studentId, Long courseId){
+
+    public void deleteStudentFromCourse(Long studentId, Long courseId){
         Courses course = courserepo.getById(courseId);
         Students student = studrepo.getById(studentId);
         course.deleteStudent(student);
         courserepo.save(course);
-        return "Student removed From the course";
     }
 }

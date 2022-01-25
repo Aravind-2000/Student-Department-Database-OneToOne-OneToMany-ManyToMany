@@ -1,6 +1,9 @@
 package com.example.demo.entity;
 
 
+import com.example.demo.component.bankComponent;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import javax.persistence.*;
 
 @Entity
@@ -29,6 +32,9 @@ public class Student_profile
     private String pincode;
     private String country;
 
+    @OneToOne
+    @JsonDeserialize(converter = bankComponent.class)
+    private BankAccount bankAccount;
 
 
 
@@ -112,5 +118,13 @@ public class Student_profile
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public BankAccount getBankAccount() {
+        return bankAccount;
+    }
+
+    public void setBankAccount(BankAccount bankAccount) {
+        this.bankAccount = bankAccount;
     }
 }
