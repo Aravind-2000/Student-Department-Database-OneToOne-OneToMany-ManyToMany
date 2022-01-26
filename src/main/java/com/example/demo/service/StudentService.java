@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import java.util.*;
 
+import com.example.demo.errorTable.ErrorService;
 import com.example.demo.repository.CoursesRepository;
 import com.example.demo.repository.StudentsProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import com.example.demo.entity.*;
 import com.example.demo.repository.StudentRepository;
 
 @Service
-public class StudentService 
+public class StudentService
 {
 	@Autowired
 	private StudentRepository studrepo;
@@ -21,6 +22,9 @@ public class StudentService
 
 	@Autowired
 	private StudentsProfileRepository studprofrepo;
+
+	@Autowired
+	private ErrorService errorService;
 	
 	public List<Students> getStudents()
 	{
@@ -35,7 +39,7 @@ public class StudentService
 	
 	public Optional<Students> getStudentById(Long studentId)
 	{
-		return studrepo.getByStudentId(studentId);
+		 return studrepo.findById(studentId);
 	}
 	
 	
@@ -60,8 +64,13 @@ public class StudentService
 
 	public String deleteStudents(Long studentId)
 	{
-		studrepo.deleteById(studentId);
-		return "Student details deleted successfully";
+		if(studrepo.findById(studentId).isPresent()){
+			studrepo.deleteById(studentId);
+			return "Student details deleted successfully";
+		}
+		else{
+			return  errorService.errorFound(410);
+		}
 	}
 	//Student Profile
 	public String addStudentsProfile(Student_profile studprof)

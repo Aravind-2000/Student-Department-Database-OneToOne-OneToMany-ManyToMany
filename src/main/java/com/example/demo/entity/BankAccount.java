@@ -11,6 +11,7 @@ public class BankAccount {
     @Id
     private Long bankId;
     private String accountNumber;
+    private String accountHolderName;
     private String ifscNumber;
     private String bankName;
     private String bankBranch;
@@ -65,4 +66,8 @@ public class BankAccount {
     public void setBankName(String bankName) {
         this.bankName = bankName;
     }
+
+    public String getAccountHolderName() {return accountHolderName;}
+
+    public void setAccountHolderName(String accountHolderName) {this.accountHolderName = accountHolderName;}
 }

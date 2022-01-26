@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.*;
 
 import com.example.demo.DTO.CourseDTO;
+import com.example.demo.errorTable.ErrorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +27,9 @@ public class MainController
 
 	@Autowired
 	private BankService bankService;
+
+	@Autowired
+	private ErrorService errorService;
 	
 	
 	//Student Controller
@@ -37,7 +41,7 @@ public class MainController
 	@GetMapping("students/get/{id}")
 	public Optional<Students> getbyStudId(@PathVariable("id") Long studentId)
 	{
-		return studservice.getStudentById(studentId);
+		 return studservice.getStudentById(studentId);
 	}
 	@PostMapping(path = "students/add")
 	public String addStud(@RequestBody Students students)
@@ -144,5 +148,12 @@ public class MainController
 	@GetMapping("bankaccount/getall/{bankId}")
 	public Optional<BankAccount> getAccountById(@PathVariable Long bankId){
 		return bankService.getAccountById(bankId);
+	}
+
+
+	// Error Controller
+	@GetMapping("error/get/{id}")
+	public String getError(@PathVariable Integer id){
+		return errorService.errorFound(id);
 	}
 }
