@@ -27,4 +27,29 @@ public class BankService{
     public Optional<BankAccount> getAccountById(Long bankId){
         return bankRepo.findById(bankId);
     }
+
+    public String updateAccountDetails(Long bandId, BankAccount account){
+        BankAccount ba = bankRepo.getById(bandId);
+
+        if(account.getBankName() != null){
+            ba.setBankName(account.getBankName());
+        }
+        if(account.getBankBranch() != null){
+            ba.setBankBranch(account.getBankBranch());
+        }
+        if(account.getAccountNumber() != null){
+            ba.setAccountNumber(account.getAccountNumber());
+        }
+        if(account.getAccountHolderName() != null){
+            ba.setAccountHolderName(account.getAccountHolderName());
+        }
+        if(account.getIfscNumber() != null){
+            ba.setIfscNumber(account.getIfscNumber());
+        }
+        if(account.getAccountType() != null){
+            ba.setAccountType(account.getAccountType());
+        }
+        bankRepo.save(ba);
+        return "Bank Details updated Successfully";
+    }
 }

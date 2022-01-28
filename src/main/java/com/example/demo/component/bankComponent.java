@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class bankComponent extends StdConverter<Long, BankAccount> {
+public class bankComponent extends StdConverter<String, BankAccount> {
 
     @Autowired
     private BankRepository bankRepo;
 
     @Override
-    public BankAccount convert(Long id) {
-        return bankRepo.findById(id).get();
+    public BankAccount convert(String id) {
+        return bankRepo.findById(Long.valueOf(id)).get();
     }
 }

@@ -150,6 +150,10 @@ public class MainController
 		return bankService.getAccountById(bankId);
 	}
 
+	@PatchMapping("bankaccount/update/{id}")
+	public String updateaccDetails(@PathVariable Long id, @RequestBody BankAccount bankAccount){
+		return bankService.updateAccountDetails(id, bankAccount);
+	}
 
 	// Error Controller
 	@GetMapping("error/get/{id}")

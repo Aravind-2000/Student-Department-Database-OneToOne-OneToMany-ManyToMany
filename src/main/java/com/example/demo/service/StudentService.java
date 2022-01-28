@@ -3,7 +3,6 @@ package com.example.demo.service;
 import java.util.*;
 
 import com.example.demo.errorTable.ErrorService;
-import com.example.demo.repository.CoursesRepository;
 import com.example.demo.repository.StudentsProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,9 +15,6 @@ public class StudentService
 {
 	@Autowired
 	private StudentRepository studrepo;
-
-	@Autowired
-	private CoursesRepository courserepo;
 
 	@Autowired
 	private StudentsProfileRepository studprofrepo;
@@ -121,6 +117,10 @@ public class StudentService
 		if(sp.getPhoneNumber() != null)
 		{
 			studprof.setPhoneNumber(sp.getPhoneNumber());
+		}
+		if(sp.getBankAccount() != null)
+		{
+			studprof.setBankAccount(sp.getBankAccount());
 		}
 		studprofrepo.save(studprof);
 		return "Student Profile Updated Successfully";

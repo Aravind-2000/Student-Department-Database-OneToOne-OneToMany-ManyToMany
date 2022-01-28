@@ -32,8 +32,9 @@ public class Student_profile
     private String pincode;
     private String country;
 
+    private Long bankId;
     @OneToOne
-    @JsonDeserialize(converter = bankComponent.class)
+    @JoinColumn(name = "bankId", updatable = false, insertable = false)
     private BankAccount bankAccount;
 
 
@@ -118,6 +119,14 @@ public class Student_profile
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public Long getBankId() {
+        return bankId;
+    }
+
+    public void setBankId(Long bankId) {
+        this.bankId = bankId;
     }
 
     public BankAccount getBankAccount() {
