@@ -30,7 +30,7 @@ public class StudentService
 	public String addStudents(Students students)
 	{
 		studrepo.save(students);
-		return "Student added";
+		return "Student " + students.getStudentName() + " with ID " + students.getStudentId() + " added";
 	}
 	
 	public Optional<Students> getStudentById(Long studentId)
@@ -55,14 +55,14 @@ public class StudentService
 			stud.setDepartmentId(students.getDepartmentId());
 		}
 		studrepo.save(stud);
-		return "Student Details updated successfully";
+		return "Student ID " + studentId + " details updated successfully";
 	}
 
 	public String deleteStudents(Long studentId)
 	{
 		if(studrepo.findById(studentId).isPresent()){
 			studrepo.deleteById(studentId);
-			return "Student details deleted successfully";
+			return "Student ID " + studentId + " details deleted successfully";
 		}
 		else{
 			return  errorService.errorFound(410);
