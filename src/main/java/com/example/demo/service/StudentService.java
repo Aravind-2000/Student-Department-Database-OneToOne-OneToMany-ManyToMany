@@ -128,7 +128,10 @@ public class StudentService
 
 	public String deleteStudProfById(Long id)
 	{
-		 studprofrepo.deleteById(id);
-		 return "Student Profile deleted Successfully";
+		if(studprofrepo.findById(id).isPresent()){
+			studprofrepo.deleteById(id);
+			return "Student Profile deleted Successfully";
+		}
+			return errorService.errorFound(410);
 	}
 }
