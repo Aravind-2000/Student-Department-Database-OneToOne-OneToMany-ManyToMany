@@ -53,9 +53,10 @@ public class CourseService
         courserepo.save(courses);
         return "Course Added";
     }
-    
-    public Optional<Courses> getCourseById(Long courseId){
-    	return courserepo.findById(courseId);
+
+    public CourseDTO getCourseById(Long courseId){
+        Courses course = courserepo.getById(courseId);
+        return  mapEntityToDto(course);
     }
     
     public String addStudentToCourse(Long studentId, Long courseId) {

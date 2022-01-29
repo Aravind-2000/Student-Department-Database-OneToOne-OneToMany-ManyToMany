@@ -21,8 +21,8 @@ public class Courses implements Serializable
     @JsonIgnore
     @JoinTable(
             name = "Enrolled_Students",
-            joinColumns = @JoinColumn(name = "student_id"),
-            inverseJoinColumns = @JoinColumn(name = "course_id")
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id")
     )
     public List<Students> enrolledStudents = new ArrayList<>();
 

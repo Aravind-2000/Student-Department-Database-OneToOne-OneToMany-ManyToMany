@@ -120,7 +120,7 @@ public class MainController
 	}
 
 	@GetMapping("courses/get/{id}")
-	public Optional<Courses> getCourseById(@PathVariable("id") Long courseId){
+	public CourseDTO getCourseById(@PathVariable("id") Long courseId){
 		return courseService.getCourseById(courseId);
 	}
 	@PutMapping("/students/{studentId}/{courseIdArr}")
