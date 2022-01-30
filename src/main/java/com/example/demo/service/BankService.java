@@ -24,8 +24,8 @@ public class BankService{
         return "Account Added";
     }
 
-    public Optional<BankAccount> getAccountById(Long bankId){
-        return bankRepo.findById(bankId);
+    public BankAccount getAccountById(Long bankId){
+        return bankRepo.getById(bankId);
     }
 
     public String updateAccountDetails(Long bandId, BankAccount account){

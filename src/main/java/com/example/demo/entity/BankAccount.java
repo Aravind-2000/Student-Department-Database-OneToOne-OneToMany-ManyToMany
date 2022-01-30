@@ -1,14 +1,12 @@
 package com.example.demo.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class BankAccount {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long bankId;
     private String accountNumber;
     private String accountHolderName;

@@ -146,7 +146,7 @@ public class MainController
 	}
 
 	@GetMapping("bankaccount/getall/{bankId}")
-	public Optional<BankAccount> getAccountById(@PathVariable Long bankId){
+	public BankAccount getAccountById(@PathVariable Long bankId){
 		return bankService.getAccountById(bankId);
 	}
 
