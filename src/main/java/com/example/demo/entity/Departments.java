@@ -2,12 +2,11 @@ package com.example.demo.entity;
 
 
 
-import java.io.Serializable;
 import java.util.*;
 import javax.persistence.*;
 
 @Entity
-public class Departments implements Serializable
+public class Departments
 {
 	@Id
 	private Long deptId;

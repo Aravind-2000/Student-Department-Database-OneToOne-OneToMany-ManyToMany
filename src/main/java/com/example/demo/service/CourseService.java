@@ -37,7 +37,6 @@ public class CourseService
         });
         return courseDtos;
     }
-
     private CourseDTO mapEntityToDto(Courses course) {
         CourseDTO response = new CourseDTO();
         response.setCourseName(course.getCourseName());

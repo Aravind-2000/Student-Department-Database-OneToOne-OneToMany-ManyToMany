@@ -2,9 +2,6 @@ package com.example.demo.entity;
 
 
 import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.util.*;
 
 @Entity

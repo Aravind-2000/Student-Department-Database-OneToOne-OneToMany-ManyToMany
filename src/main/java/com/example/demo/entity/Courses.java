@@ -4,11 +4,10 @@ import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import java.io.Serializable;
 import java.util.*;
 
 @Entity
-public class Courses implements Serializable
+public class Courses
 {
     @Id
     private Long courseId;
