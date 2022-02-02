@@ -32,9 +32,9 @@ public class Student_profile
     private String pincode;
     private String country;
 
-    private Long bankId;
-    @OneToOne
-    @JoinColumn(name = "bankId", updatable = false, insertable = false)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @PrimaryKeyJoinColumn
+    @JoinColumn(name = "bank_Id", referencedColumnName = "bankId", nullable = false)
     private BankAccount bankAccount;
 
 
@@ -119,14 +119,6 @@ public class Student_profile
 
     public void setCountry(String country) {
         this.country = country;
-    }
-
-    public Long getBankId() {
-        return bankId;
-    }
-
-    public void setBankId(Long bankId) {
-        this.bankId = bankId;
     }
 
     public BankAccount getBankAccount() {

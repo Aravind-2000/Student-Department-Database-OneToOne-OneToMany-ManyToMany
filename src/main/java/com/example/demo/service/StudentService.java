@@ -33,9 +33,9 @@ public class StudentService
 		return "Student " + students.getStudentName() + " with ID " + students.getStudentId() + " added";
 	}
 	
-	public Optional<Students> getStudentById(Long studentId)
+	public Students getStudentById(Long studentId)
 	{
-		 return studrepo.findById(studentId);
+		 return studrepo.getById(studentId);
 	}
 	
 	

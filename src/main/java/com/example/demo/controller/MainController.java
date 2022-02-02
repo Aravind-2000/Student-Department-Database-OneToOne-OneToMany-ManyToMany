@@ -39,7 +39,7 @@ public class MainController
 		return studservice.getStudents();
 	}
 	@GetMapping("students/get/{id}")
-	public Optional<Students> getbyStudId(@PathVariable("id") Long studentId)
+	public Students getbyStudId(@PathVariable("id") Long studentId)
 	{
 		 return studservice.getStudentById(studentId);
 	}
@@ -104,7 +104,6 @@ public class MainController
 	{
 		return deptservice.getDepartmentById(id);
 	}
-
 
 	//Courses
 	@GetMapping("courses/getall")

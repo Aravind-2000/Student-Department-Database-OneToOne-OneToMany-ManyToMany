@@ -6,7 +6,6 @@ import javax.persistence.*;
 public class BankAccount {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long bankId;
     private String accountNumber;
     private String accountHolderName;
