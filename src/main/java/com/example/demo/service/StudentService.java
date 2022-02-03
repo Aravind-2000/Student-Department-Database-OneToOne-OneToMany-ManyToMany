@@ -35,7 +35,7 @@ public class StudentService
 	
 	public Students getStudentById(Long studentId)
 	{
-		 return studrepo.getById(studentId);
+		 return studrepo.findById(studentId).get();
 	}
 	
 	
